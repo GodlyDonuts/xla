@@ -23,12 +23,12 @@ limitations under the License.
 #include "absl/status/statusor.h"
 #include "absl/strings/cord.h"
 #include "absl/strings/string_view.h"
-#include "xla/pjrt/c/pjrt_c_api.h"
 #include "xla/pjrt/c/pjrt_c_api_abi_version_helpers.h"
 #include "xla/pjrt/pjrt_abi_version.h"
 #include "xla/pjrt/pjrt_api.h"
 #include "xla/pjrt/plugin/plugin_names.h"
 #include "xla/pjrt/proto/pjrt_abi_version.pb.h"
+#include "xla/pjrt/se/stream_executor_pjrt_abi_version.h"
 #include "xla/python/ifrt/rtti.h"
 #include "xla/python/ifrt/serdes.h"
 #include "xla/python/pjrt_ifrt/gpu_xla_executable_abi_version.h"
@@ -73,17 +73,27 @@ GpuXlaExecutableAbiVersionSerDes::Deserialize(
 namespace {
 
 absl::StatusOr<std::unique_ptr<xla::PjRtExecutableAbiVersion>>
-CApiPjRtExecutableAbiVersionFromProto(
+DefaultGpuExecutableAbiVersionFromProto(
     const xla::PjRtExecutableAbiVersionProto& proto) {
-  ABSL_ASSIGN_OR_RETURN(const PJRT_Api* c_api, pjrt::PjrtApi(kGpuPjrtName));
-  return pjrt::CApiExecutableAbiVersionFromProto(proto, c_api);
+  auto c_api = pjrt::PjrtApi(kGpuPjrtName);
+  if (c_api.ok()) {
+    auto capi_version = pjrt::CApiExecutableAbiVersionFromProto(proto, *c_api);
+    if (capi_version.ok()) {
+      return capi_version;
+    }
+  }
+  auto se_version = StreamExecutorPjRtExecutableAbiVersion::FromProto(proto);
+  if (se_version.ok()) {
+    return std::move(*se_version);
+  }
+  return se_version.status();
 }
 
 bool register_gpu_abi_version_serdes =
     ([] {
       xla::ifrt::RegisterSerDes<xla::GpuXlaExecutableAbiVersion>(
           std::make_unique<xla::GpuXlaExecutableAbiVersionSerDes>(
-            CApiPjRtExecutableAbiVersionFromProto));
+              DefaultGpuExecutableAbiVersionFromProto));
     }(),
      true);
 
