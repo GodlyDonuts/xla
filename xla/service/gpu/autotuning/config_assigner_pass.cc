@@ -114,11 +114,19 @@ AutotuneDecision AllowRegSpillsForGpuInstruction(
 
 AutotuneDecision ShouldAssignConfigToCustomCall(
     bool do_not_autotune_cublas, bool do_not_autotune_cudnn,
+    const se::GpuComputeCapability& gpu_version,
     const HloInstruction& instruction) {
   auto gpu_config = instruction.backend_config<GpuBackendConfig>();
   if (IsCublasLtGemm(instruction)) {
     if (do_not_autotune_cublas) {
       return AutotuneDecision::Forbid("Autotuning cuBLAS is disabled");
+    }
+    if (IsCublasLtGroupedMatmul(instruction) && !gpu_version.IsRocm()) {
+      return AutotuneDecision::Forbid(
+          "Grouped matmul autotuning is not supported on CUDA");
+    }
+    if (IsCublasLtMatmulMx(instruction)) {
+      return AutotuneDecision::Forbid("MX matmul autotuning is not supported");
     }
     if (gpu_config.ok()) {
       // Grouped matmul stores the selected algorithm in the nested
@@ -201,11 +209,13 @@ AutotuneDecision ShouldAssignConfigToGenericFusion(
 
 AutotuneDecision ShouldAssignConfigToInstruction(
     bool do_not_autotune_cublas, bool do_not_autotune_cudnn,
-    bool enable_fusion_autotuner, const HloInstruction& instruction) {
+    bool enable_fusion_autotuner, const se::GpuComputeCapability& gpu_version,
+    const HloInstruction& instruction) {
   // 1. Custom calls.
   if (instruction.opcode() == HloOpcode::kCustomCall) {
     return ShouldAssignConfigToCustomCall(do_not_autotune_cublas,
-                                          do_not_autotune_cudnn, instruction);
+                                          do_not_autotune_cudnn, gpu_version,
+                                          instruction);
   }
   if (instruction.opcode() == HloOpcode::kFusion) {
     // 2. GEMM fusions.
@@ -359,8 +369,7 @@ InstructionFilterFn GetShouldAssignConfigToInstructionFn(
     const DebugOptions& debug_options,
     const se::GpuComputeCapability& gpu_version) {
   bool do_not_autotune_cublas =
-      debug_options.xla_gpu_experimental_disable_binary_libraries() ||
-      debug_options.xla_gpu_autotune_level() == 0;
+      debug_options.xla_gpu_experimental_disable_binary_libraries();
   bool do_not_autotune_cudnn =
       debug_options.xla_gpu_experimental_disable_binary_libraries() ||
       (do_not_autotune_cublas && !gpu_version.IsRocm());
@@ -372,10 +381,11 @@ InstructionFilterFn GetShouldAssignConfigToInstructionFn(
       debug_options.xla_gpu_experimental_enable_fusion_autotuner();
 
   return [do_not_autotune_cublas, do_not_autotune_cudnn,
-          enable_fusion_autotuner](const HloInstruction& instruction) -> bool {
+          enable_fusion_autotuner,
+          gpu_version](const HloInstruction& instruction) -> bool {
     AutotuneDecision decision = ShouldAssignConfigToInstruction(
         do_not_autotune_cublas, do_not_autotune_cudnn, enable_fusion_autotuner,
-        instruction);
+        gpu_version, instruction);
     if (!decision) {
       VLOG(3) << "Not assigning configs to " << instruction.name() << ": "
               << decision.Explain();
