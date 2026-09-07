@@ -125,7 +125,6 @@ xla_cc_test(
         "//xla/hlo/ir:hlo",
         "//xla/hlo/parser:hlo_parser",
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/strings:string_view",
         "@com_google_googletest//:gtest_main",
     ],
@@ -173,7 +172,6 @@ xla_cc_test(
         "//xla/hlo/testlib:pattern_matcher_gmock",
         "@com_google_absl//absl/strings:string_view",
         "@com_google_googletest//:gtest_main",
-        "@tsl//tsl/platform:statusor",
     ],
 )
 
@@ -220,7 +218,6 @@ xla_cc_test(
         "@com_google_absl//absl/status:statusor",
         "@com_google_absl//absl/strings:string_view",
         "@com_google_googletest//:gtest",
-        "@tsl//tsl/platform:statusor",
     ],
 )
 
@@ -249,7 +246,6 @@ xla_cc_test(
         "//xla:xla_data_proto_cc",
         "//xla/hlo/ir:hlo",
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/strings:string_view",
         "@com_google_googletest//:gtest_main",
     ],
@@ -349,8 +345,6 @@ xla_cc_test(
         ":collective_permute_decomposer",
         "//xla/hlo/ir:hlo",
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
-        "//xla/tsl/lib/core:status_test_util",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/algorithm:container",
         "@com_google_absl//absl/log:check",
         "@com_google_absl//absl/strings",
@@ -528,7 +522,6 @@ xla_cc_test(
         "//xla/hlo/utils:hlo_matchers",
         "//xla/hlo/utils:hlo_query",
         "//xla/tsl/platform:logging",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/algorithm:container",
         "@com_google_absl//absl/container:flat_hash_set",
         "@com_google_absl//absl/log:check",
@@ -709,9 +702,7 @@ xla_cc_test(
         "//xla/hlo/parser:hlo_parser",
         "//xla/runtime/large_hlo_snapshot_serialization:serialization",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
         "//xla/tsl/platform:env",
-        "//xla/tsl/platform:statusor",
         "//xla/tsl/platform:test",
         "//xla/tsl/testing:temporary_directory",
         "//xla/tsl/util/proto:proto_matchers",
@@ -918,9 +909,7 @@ xla_cc_test(
         "//xla/hlo/ir:hlo",
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
         "@com_google_googletest//:gtest",
-        "@tsl//tsl/platform:statusor",
     ],
 )
 
@@ -941,9 +930,9 @@ xla_test(
         "//xla/tests:hlo_pjrt_test_base",
         "//xla/tests:test_utils",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/algorithm:container",
         "@com_google_absl//absl/types:span",
+        "@com_google_googletest//:gtest",
     ],
 )
 
@@ -1021,7 +1010,6 @@ xla_cc_test(
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
         "//xla/tests:xla_internal_test_main",
         "@com_google_googletest//:gtest",
-        "@tsl//tsl/platform:statusor",
         "@tsl//tsl/platform:test",
     ],
 )
@@ -1046,8 +1034,6 @@ xla_cc_test(
         "//xla/hlo/testlib:test_helpers",
         "//xla/service/gpu:backend_configs_cc",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
-        "//xla/tsl/platform:statusor",
         "//xla/tsl/util/proto:proto_matchers",
         "@com_google_absl//absl/algorithm:container",
         "@com_google_absl//absl/container:flat_hash_map",
@@ -1128,13 +1114,11 @@ xla_cc_test(
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
         "//xla/hlo/utils:hlo_matchers",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
         "@com_google_absl//absl/algorithm:container",
         "@com_google_absl//absl/container:flat_hash_set",
         "@com_google_absl//absl/status",
         "@com_google_googletest//:gtest",
         "@tsl//tsl/platform:errors",
-        "@tsl//tsl/platform:statusor",
     ],
 )
 
@@ -1189,8 +1173,6 @@ xla_cc_test(
         "//xla/hlo/transforms/simplifiers:hlo_dce",
         "//xla/hlo/utils:hlo_matchers",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/container:flat_hash_set",
         "@com_google_absl//absl/log",
         "@com_google_absl//absl/status:status_matchers",
@@ -1232,7 +1214,6 @@ xla_cc_test(
         "//xla/hlo/parser:hlo_parser",
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
         "//xla/hlo/testlib:verified_hlo_module",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/strings:string_view",
         "@com_google_googletest//:gtest_main",
     ],
@@ -1820,7 +1801,6 @@ xla_cc_test(
         "@com_google_absl//absl/status:statusor",
         "@com_google_googletest//:gtest_main",
         "@tsl//tsl/platform:env",
-        "@tsl//tsl/platform:statusor",
         "@tsl//tsl/platform:test",
     ],
 )
@@ -1969,8 +1949,6 @@ xla_test(
         "//xla/stream_executor/gpu:gpu_init",
         "//xla/tests:xla_internal_test_main",  # fixdeps: keep
         "//xla/tests:xla_test_backend_predicates",
-        "//xla/tsl/lib/core:status_test_util",
-        "//xla/tsl/platform:statusor",
         "@com_google_googletest//:gtest",
         "@com_google_protobuf//:protobuf",
     ],
@@ -2202,8 +2180,6 @@ xla_cc_test(
         "//xla/service/heap_simulator",
         "//xla/service/memory_space_assignment",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
-        "//xla/tsl/platform:statusor",
         "//xla/tsl/platform:test_benchmark",
         "//xla/tsl/util/proto:proto_matchers",
         "@com_google_absl//absl/algorithm:container",
@@ -2284,10 +2260,8 @@ xla_cc_test(
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
         "//xla/hlo/testlib:test_helpers",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
         "@com_google_absl//absl/algorithm:container",
         "@com_google_googletest//:gtest",
-        "@tsl//tsl/platform:statusor",
     ],
 )
 
@@ -2481,7 +2455,6 @@ xla_cc_test(
         "//xla/hlo/testlib:verified_hlo_module",
         "//xla/tests:literal_test_util",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/log:check",
         "@com_google_absl//absl/strings",
         "@com_google_absl//absl/strings:string_view",
@@ -2854,8 +2827,7 @@ xla_cc_test(
         "//xla/hlo/testlib:pattern_matcher_gmock",
         "//xla/hlo/testlib:test",
         "//xla/tests:xla_internal_test_main",  # fixdeps: keep
-        "//xla/tsl/platform:statusor",
-        "@tsl//tsl/platform:statusor",
+        "@com_google_googletest//:gtest",
     ],
 )
 
@@ -2893,8 +2865,8 @@ xla_cc_test(
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
         "//xla/hlo/testlib:pattern_matcher_gmock",
         "//xla/tests:xla_internal_test_main",  # fixdeps: keep
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/strings:string_view",
+        "@com_google_googletest//:gtest",
     ],
 )
 
@@ -2984,6 +2956,7 @@ xla_cc_test(
         "//xla/hlo/utils:hlo_query",
         "//xla/tests:xla_internal_test_main",  # fixdeps: keep
         "@com_google_absl//absl/strings:string_view",
+        "@com_google_googletest//:gtest",
     ],
 )
 
@@ -3028,9 +3001,8 @@ xla_cc_test(
         "//xla/hlo/testlib:verified_hlo_module",
         "//xla/hlo/utils:hlo_matchers",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/strings:string_view",
+        "@com_google_googletest//:gtest",
         "@tsl//tsl/platform:status",
     ],
 )
@@ -3080,8 +3052,6 @@ xla_cc_test(
         "//xla/hlo/transforms/simplifiers:hlo_dce",
         "//xla/hlo/utils:hlo_matchers",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/log",
         "@com_google_absl//absl/log:check",
         "@com_google_absl//absl/strings:string_view",
@@ -3358,7 +3328,6 @@ xla_cc_test(
         "//xla/hlo/ir:hlo_instruction_utils",
         "//xla/hlo/parser:hlo_parser",
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
-        "//xla/tsl/platform:statusor",
         "@com_google_googletest//:gtest_main",
     ],
 )
@@ -3398,7 +3367,6 @@ xla_cc_test(
         "//xla/hlo/utils:hlo_matchers",
         "//xla/tests:xla_internal_test_main",  # fixdeps: keep
         "@com_google_googletest//:gtest",
-        "@tsl//tsl/platform:statusor",
     ],
 )
 
@@ -3530,9 +3498,7 @@ xla_test(
         "//xla/tests:hlo_pjrt_test_base",
         "//xla/tests:xla_internal_test_main",
         "//xla/tests:xla_test_backend_predicates",
-        "//xla/tsl/lib/core:status_test_util",
         "//xla/tsl/platform:errors",
-        "//xla/tsl/platform:statusor",
         "//xla/tsl/protobuf:error_codes_proto_impl_cc",
         "@com_google_absl//absl/log",
         "@com_google_absl//absl/log:check",
@@ -3541,6 +3507,7 @@ xla_test(
         "@com_google_absl//absl/status:statusor",
         "@com_google_absl//absl/strings",
         "@com_google_absl//absl/types:span",
+        "@com_google_googletest//:gtest",
     ],
 )
 
@@ -3574,12 +3541,11 @@ xla_cc_test(
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
         "//xla/hlo/testlib:test",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/log:check",
         "@com_google_absl//absl/status",
         "@com_google_absl//absl/status:status_macros",
         "@com_google_absl//absl/status:statusor",
+        "@com_google_googletest//:gtest",
     ],
 )
 
@@ -3709,10 +3675,9 @@ xla_cc_test(
         "//xla/stream_executor/host:host_platform_id",
         "//xla/tests:literal_test_util",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
         "@com_google_absl//absl/strings",
         "@com_google_absl//absl/types:span",
-        "@tsl//tsl/platform:statusor",
+        "@com_google_googletest//:gtest",
         "@tsl//tsl/platform:test",
     ],
 )
@@ -3763,7 +3728,6 @@ xla_cc_test(
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
         "//xla/hlo/testlib:test_helpers",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/container:inlined_vector",
         "@com_google_absl//absl/log:check",
         "@com_google_absl//absl/status:statusor",
@@ -3829,8 +3793,6 @@ xla_cc_test(
         "//xla/hlo/testlib:test_helpers",
         "//xla/hlo/utils:hlo_matchers",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/container:flat_hash_map",
         "@com_google_absl//absl/container:flat_hash_set",
         "@com_google_absl//absl/log:check",
@@ -3864,9 +3826,7 @@ xla_cc_test(
         "//xla/hlo/transforms/simplifiers:hlo_memory_scheduler",
         "//xla/hlo/utils:hlo_matchers",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
         "//xla/tsl/lib/strings:proto_serialization",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/algorithm:container",
         "@com_google_absl//absl/container:flat_hash_map",
         "@com_google_absl//absl/container:flat_hash_set",
@@ -4177,7 +4137,6 @@ xla_cc_test(
         "//xla/hlo/utils:hlo_matchers",
         "//xla/hlo/utils:hlo_query",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/platform:statusor",
         "//xla/tsl/platform:test_benchmark",
         "@com_google_absl//absl/algorithm:container",
         "@com_google_absl//absl/log",
@@ -4341,9 +4300,7 @@ xla_cc_test(
         "//xla/hlo/parser:hlo_parser",
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
         "@com_google_googletest//:gtest",
-        "@tsl//tsl/platform:statusor",
     ],
 )
 
@@ -4445,7 +4402,6 @@ xla_test(
         "//xla/tests:hlo_pjrt_test_base",
         "//xla/tests:literal_test_util",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/algorithm:container",
         "@com_google_absl//absl/log",
         "@com_google_absl//absl/status:status_matchers",
@@ -4568,9 +4524,8 @@ xla_cc_test(
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
         "//xla/hlo/testlib:test",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/log",
+        "@com_google_googletest//:gtest",
     ],
 )
 
@@ -4737,7 +4692,6 @@ xla_cc_test(
         "//xla:xla_proto_cc",
         "//xla/tests:test_utils",
         "@com_google_googletest//:gtest_main",
-        "@tsl//tsl/platform:statusor",
         "@tsl//tsl/platform:test",
     ],
 )
@@ -4842,10 +4796,10 @@ xla_cc_test(
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
         "//xla/hlo/testlib:test",
         "//xla/tests:xla_internal_test_main",  # fixdeps: keep
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/container:flat_hash_map",
         "@com_google_absl//absl/strings",
         "@com_google_absl//absl/strings:str_format",
+        "@com_google_googletest//:gtest",
     ],
 )
 
@@ -5631,6 +5585,7 @@ xla_cc_test(
         "//xla/hlo/testlib:test",
         "//xla/hlo/utils:hlo_matchers",
         "//xla/tests:xla_internal_test_main",  # fixdeps: keep
+        "@com_google_googletest//:gtest",
     ],
 )
 
@@ -5832,8 +5787,6 @@ xla_cc_test(
         "//xla/hlo/parser:hlo_parser",
         "//xla/runtime:device_id",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/algorithm:container",
         "@com_google_absl//absl/log",
         "@com_google_absl//absl/status:status_macros",
@@ -5898,7 +5851,7 @@ xla_cc_test(
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
         "//xla/hlo/testlib:test",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/platform:statusor",
+        "@com_google_googletest//:gtest",
     ],
 )
 
@@ -6133,8 +6086,6 @@ xla_cc_test(
         "//xla:xla_proto_cc",
         "//xla/hlo/testlib:test",
         "//xla/tests:xla_internal_test_main",
-        "//xla/tsl/lib/core:status_test_util",
-        "//xla/tsl/platform:statusor",
     ],
 )
 
@@ -6351,7 +6302,6 @@ xla_cc_test(
         "//xla/hlo/testlib:hlo_hardware_independent_test_base",
         "//xla/hlo/testlib:pattern_matcher_gmock",
         "//xla/tests:xla_internal_test_main",  # fixdeps: keep
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/types:span",
         "@com_google_googletest//:gtest",
     ],
@@ -6646,10 +6596,8 @@ xla_cc_test(
         ":gpu_compilation_environment",
         "//xla:parse_flags_from_env",
         "//xla:xla_proto_cc",
-        "//xla/tsl/lib/core:status_test_util",
         "//xla/tsl/platform:env",
         "//xla/tsl/platform:errors",
-        "//xla/tsl/platform:statusor",
         "@com_google_absl//absl/status:status_matchers",
         "@com_google_googletest//:gtest_main",
     ],
