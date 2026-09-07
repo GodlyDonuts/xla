@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "xla/hlo/separate_compilation/hlo_module_splitting.h"
+#include "xla/hlo/parallel_compilation/hlo_module_splitting.h"
 
 #include <cstdint>
 #include <deque>
@@ -39,14 +39,14 @@ limitations under the License.
 #include "xla/hlo/ir/hlo_instruction.h"
 #include "xla/hlo/ir/hlo_module.h"
 #include "xla/hlo/ir/hlo_opcode.h"
-#include "xla/hlo/separate_compilation/hlo_linking_manifest.h"
+#include "xla/hlo/parallel_compilation/hlo_linking_manifest.h"
 #include "xla/service/compilation_environments.h"
 #include "xla/service/hlo_module_config.h"
 #include "xla/status_macros.h"
 #include "xla/tsl/platform/errors.h"
 #include "xla/tsl/platform/statusor.h"
 
-namespace xla::separate_compilation {
+namespace xla::parallel_compilation {
 namespace {
 
 constexpr absl::string_view kEntryName = "entry";
@@ -354,4 +354,4 @@ absl::StatusOr<const HloComputation*> HloModuleSplitGroup::GetClonedComputation(
   return it2->second;
 }
 
-}  // namespace xla::separate_compilation
+}  // namespace xla::parallel_compilation

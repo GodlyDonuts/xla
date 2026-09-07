@@ -13,7 +13,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 ==============================================================================*/
 
-#include "xla/hlo/separate_compilation/hlo_module_linking.h"
+#include "xla/hlo/parallel_compilation/hlo_module_linking.h"
 
 #include <memory>
 #include <stack>
@@ -35,13 +35,13 @@ limitations under the License.
 #include "xla/hlo/ir/hlo_module.h"
 #include "xla/hlo/ir/hlo_opcode.h"
 #include "xla/hlo/ir/hlo_print_options.h"
-#include "xla/hlo/separate_compilation/hlo_linking_manifest.h"
+#include "xla/hlo/parallel_compilation/hlo_linking_manifest.h"
 #include "xla/hlo/transforms/simplifiers/hlo_dce.h"
 #include "xla/service/compilation_environments.h"
 #include "xla/tsl/platform/errors.h"
 #include "xla/tsl/platform/statusor.h"
 
-namespace xla::separate_compilation {
+namespace xla::parallel_compilation {
 
 namespace {
 struct TraversalState {
@@ -222,4 +222,4 @@ absl::StatusOr<std::unique_ptr<HloModule>> LinkComputation(
   return linked_module;
 }
 
-}  // namespace xla::separate_compilation
+}  // namespace xla::parallel_compilation
